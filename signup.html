@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GAYBOOK Sign Up</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #ffe6f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 48px;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    form {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    input, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff85c1;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>GAYBOOK</h1>
+  <form id="signupForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="date" id="dob" placeholder="Date of Birth" required />
+    <input type="text" id="quote" placeholder="Favorite Quote" required />
+    <input type="text" id="song" placeholder="Favorite Song or Link" required />
+    <input type="password" id="password" placeholder="Password (8 chars, 1 letter, 1 number, 1 symbol)" required />
+    <div class="error" id="error"></div>
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const dob = document.getElementById('dob').value.trim();
+      const quote = document.getElementById('quote').value.trim();
+      const song = document.getElementById('song').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      const error = document.getElementById('error');
+      const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8}$/;
+
+      if (!passwordRegex.test(password)) {
+        error.textContent = "Password must be exactly 8 characters and include a letter, number, and special character.";
+        return;
+      }
+
+      // Store user info
+      localStorage.setItem('gaybook_name', name);
+      localStorage.setItem('gaybook_email', email);
+      localStorage.setItem('gaybook_dob', dob);
+      localStorage.setItem('gaybook_quote', quote);
+      localStorage.setItem('gaybook_song', song);
+
+      // Redirect
+      window.location.href = 'gaybook_editable_profile.html';
+    });
+  </script>
+</body>
+</html>
