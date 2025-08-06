@@ -2,58 +2,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>GAYBOOK Feed</title>
   <style>
     body {
       margin: 0;
-      font-family: "Helvetica Neue", sans-serif;
-      background-color: #ffe6f0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fff0f5;
     }
     header {
       background: white;
       padding: 20px;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    h1 {
-      font-size: 2.8em;
+    header h1 {
+      font-size: 48px;
+      margin: 0;
       background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 0;
     }
     .container {
       display: flex;
+      justify-content: space-between;
       padding: 20px;
     }
-    .sidebar, .extras {
+    .left-column, .center-column, .right-column {
+      padding: 10px;
+    }
+    .left-column, .right-column {
       width: 20%;
-      padding: 10px;
     }
-    .main-feed {
-      width: 60%;
-      padding: 10px;
+    .center-column {
+      width: 55%;
     }
-    .post {
+    .story-image {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .section {
       background: white;
       padding: 15px;
       margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    iframe, img {
-      max-width: 100%;
-      border-radius: 10px;
-    }
-    .caption {
-      margin-top: 10px;
+    .journal-entry {
       font-style: italic;
+      font-weight: bold;
+      color: #800080;
     }
-    .horoscope {
-      background: #fff5fa;
-      border-left: 4px solid pink;
-      padding: 10px;
-      border-radius: 8px;
+    .friend-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 10px;
+      object-fit: cover;
+      border: 3px solid #ff69b4;
+    }
+    .friend-name {
+      text-align: center;
+      font-size: 12px;
+    }
+    iframe {
+      width: 100%;
+      border-radius: 12px;
     }
   </style>
 </head>
@@ -62,28 +76,43 @@
     <h1>GAYBOOK</h1>
   </header>
   <div class="container">
-    <div class="sidebar">
-      <h3>🎧 My Playlist</h3>
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4X3Sj4Nt1658Ff4GbleSQR?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    <div class="main-feed">
-      <div class="post">
-        <img src="file_00000000a95062439c536c8a6f12f756.png" alt="Snuggles with Egas" />
-        <div class="caption">Snuggles with Egas. Morning peace.</div>
-      </div>
-      <div class="post">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/flvz5RMRx7E" frameborder="0" allowfullscreen></iframe>
-        <div class="caption">Shared a scene from Crazy, Stupid, Love.</div>
-      </div>
-      <div class="post horoscope">
-        <h3>🔮 Aries Daily Horoscope</h3>
-        <p>You have no idea what works beneath the surface… a gentle cosmic reminder that no matter what, when you are ready to look up, the skies will be clear…</p>
-        <p><strong>Today:</strong> Mars enters Libra — time for diplomacy over dominance, Aries.</p>
+    <div class="left-column">
+      <div class="section">
+        <h3>Song of the Day 🎧</h3>
+        <a href="https://open.spotify.com/playlist/4X3Sj4Nt1658Ff4GbleSQR" target="_blank">Open Spotify Playlist</a>
       </div>
     </div>
-    <div class="extras">
-      <h3>🧑‍🤝‍🧑 Friends</h3>
-      <p><img src="https://via.placeholder.com/50" style="border-radius:50%;"> Susan — “Let’s share something today.”</p>
+    <div class="center-column">
+      <div class="section">
+        <h3>Story of the Day 🐶</h3>
+        <img src="feed_assets/story_of_the_day_egas.jpg" alt="Snuggles with Egas" class="story-image" />
+        <p><strong>Caption:</strong> Snuggles with Egas. Morning peace.</p>
+      </div>
+      <div class="section">
+        <h3>Journal Entry</h3>
+        <p class="journal-entry">"I feel fresh and ready to battle another day."</p>
+      </div>
+      <div class="section">
+        <h3>Shared Video 🎞️</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/flvz5RMRx7E" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="right-column">
+      <div class="section">
+        <h3>Friends' Stories</h3>
+        <div>
+          <img src="feed_assets/story_of_the_day_egas.jpg" class="friend-circle" />
+          <div class="friend-name">Susan<br><small>Moon in Libra 🌙</small></div>
+        </div>
+        <div>
+          <img src="https://placekitten.com/60/60" class="friend-circle" />
+          <div class="friend-name">Sophie<br><small>Mars in Aries ♂</small></div>
+        </div>
+        <div>
+          <img src="https://placekitten.com/61/61" class="friend-circle" />
+          <div class="friend-name">David<br><small>Venus in Leo ♀</small></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
