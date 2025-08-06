@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaybook Sign Up</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffd4ec;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .header {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .rainbow span:nth-child(1) { color: red; }
+    .rainbow span:nth-child(2) { color: orange; }
+    .rainbow span:nth-child(3) { color: yellow; }
+    .rainbow span:nth-child(4) { color: green; }
+    .rainbow span:nth-child(5) { color: blue; }
+    .rainbow span:nth-child(6) { color: indigo; }
+    .rainbow span:nth-child(7) { color: violet; }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    .container h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .checkbox-group {
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #ff69b4;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff85c1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header rainbow">
+    <span>G</span><span>A</span><span>Y</span><span>B</span><span>O</span><span>O</span><span>K</span>
+  </div>
+
+  <div class="container">
+    <h2>Sign Up</h2>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password (exactly 8 chars: 1 letter, 1 number, 1 symbol)" />
+    <div id="passwordError" class="error">❗ Password must be exactly 8 characters and include a letter, number, and special character.</div>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="over18" /> I’m queer and over 18 💅✨🪞</label>
+    </div>
+    <div id="ageError" class="error">❗ You must confirm you're queer and over 18.</div>
+
+    <button id="signupBtn">Create Account</button>
+  </div>
+
+  <script>
+    document.getElementById('signupBtn').addEventListener('click', function () {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const over18 = document.getElementById('over18').checked;
+      const passwordError = document.getElementById('passwordError');
+      const ageError = document.getElementById('ageError');
+
+      function validatePassword(pw) {
+        const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8}$/;
+        return re.test(pw);
+      }
+
+      let valid = true;
+
+      if (!name || !email || !password) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      if (!validatePassword(password)) {
+        passwordError.style.display = 'block';
+        valid = false;
+      } else {
+        passwordError.style.display = 'none';
+      }
+
+      if (!over18) {
+        ageError.style.display = 'block';
+        valid = false;
+      } else {
+        ageError.style.display = 'none';
+      }
+
+      if (!valid) return;
+
+      const user = {
+        name: name,
+        email: email,
+        likes: [],
+        friends: [],
+        birthSign: "Aries"
+      };
+
+      localStorage.setItem('gaybookUser', JSON.stringify(user));
+      window.location.href = "feed.html";
+    });
+  </script>
+</body>
+</html>
